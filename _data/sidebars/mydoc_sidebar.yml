@@ -2,9 +2,9 @@
 
 entries:
 - title: sidebar
-  product: "The text that appear on top of the side menu"
+  product: Menu
   levels: two
-  version: 
+  version:
   folders:
 
   - title:
@@ -82,4 +82,3 @@ entries:
     - title: "Second Document Header 3"
       url: /doc-template.html#header-3
       output: web
-
