@@ -2,7 +2,6 @@
 title: "HOMEPAGE [First Document]"
 keywords: homepage
 tags: [getting_started, about, overview]
-#topnav: topnav
 toc: false
 #permalink: index.html
 summary: This is a Markdown document that will be rendered as the site 2nd page
