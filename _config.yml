@@ -139,12 +139,14 @@ description: "A Jekyll-based documentation theme for data management documentati
 
 url                      : "https://ioos.github.io"
 
-baseurl                  : "/your-documentation-repo-name"
+#baseurl                  : "/your-documentation-repo-name"
+baseurl                  : "/ioos-documentation-jekyll-skeleton"
 
-repository               : "ioos/your-documentation-repo-name"
+#repository               : "ioos/your-documentation-repo-name"
+repository               : "ioos/ioos-documentation-jekyll-skeleton"
 
-github_editme_path       : "ioos/your-documentation-repo-name/blob/gh-pages/_docs"
-
+#github_editme_path       : "ioos/your-documentation-repo-name/blob/gh-pages/_docs"
+github_editme_path       : "ioos/ioos-documentation-jekyll-skeleton/blob/gh-pages/_docs"
 
 
 #Setup/config for 'ioos_documentation_theme_jekyll' git submodule (do not alter):
