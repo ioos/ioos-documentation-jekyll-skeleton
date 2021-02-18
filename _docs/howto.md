@@ -38,7 +38,7 @@ Editing content in your new fork of the documentation skeleton repository can be
 1. Locally using a text editor, and optionally running in local development mode via a Ruby/Jekyll installation
 1. Online using the GitHub website
 
-Editing locally is easier for making major changes to the site, including more complicated steps like modifying the sidebar layout, working with images, etc.  It requires a working git client to transmit changes back up to your GitHub fork for rendering online, as well as a local installation of Ruby/Jekyll to preview your changes.  Instructions for setting up the Ruby/Jekyll environment can be found in the original Jekyll Documentation Theme [on this page](https://idratherbewriting.com/documentation-theme-jekyll/index.html).
+Editing locally is easier for making major changes to the site, including more complicated steps like modifying the sidebar layout, working with images, etc.  It requires a working git client to transmit changes back to your GitHub fork for rendering online, as well as a local installation of Ruby/Jekyll to preview your changes.  Instructions for setting up the Ruby/Jekyll environment can be found in the original Jekyll Documentation Theme [instructions](https://idratherbewriting.com/documentation-theme-jekyll/index.html) - also see the [Local Development With Jekyll](#local-development-with-jekyll) section for more details.
 
 Editing in GitHub is easier for more minor content modifications (see the Notes section below).
 
@@ -46,11 +46,11 @@ The important files and directories to modify in the template are the following:
 
 |**Name**|**Description**|
 |--------|------------|
-|\_config.yml | Main Jekyll configuration files.  Modify settings in these to change anything related to the theme.  The important settings to update are primarily located at the top of the file, and include settings like: 'title', 'name', 'description', 'baseurl', among others.  More documentation can be found in the 'Documentation Theme for Jekyll' original documentation (see below).|
-|/\_data/sidebars/sidebar_ioos.yml| Configuration file for a side accordion navigation menu.  Further description of the configuration details and how they work is beyond the scope here, refer to the Jekyll and the 'Documentation Theme for Jekyll' original documentation for more info.|
-|/\_docs/| Directory to place any GitHub-standard markdown (.md) content to publish.|
-|/\_docs/index.md| The markdown file that contains the content for the 'homepage' (index.html) for the site - this should be updated/replaced accordingly.|
-|/\_docs/images/| A folder to add any image content to reference in your documentation pages.|
+|**\_config.yml** | Main Jekyll configuration files.  Modify settings in these to change anything related to the theme.  The important settings to update are primarily located at the top of the file, and include settings like: 'title', 'name', 'description', 'baseurl', among others.  More documentation can be found in the 'Documentation Theme for Jekyll' original documentation (see below).|
+|**/\_data/sidebars/sidebar_ioos.yml**| Configuration file for a side accordion navigation menu.  Further description of the configuration details and how they work is beyond the scope here, refer to the Jekyll and the 'Documentation Theme for Jekyll' original documentation for more info.|
+|**/\_docs/**| Directory to place any GitHub-standard markdown (.md) content to publish.|
+|**/\_docs/index.md**| The markdown file that contains the content for the 'homepage' (index.html) for the site - this should be updated/replaced accordingly.|
+|**/\_docs/images/**| A folder to add any image content to reference in your documentation pages.|
 
 **Notes:** 
 - All published documents in Markdown must be placed into the '_docs' directory, where they can be edited with any true text editor such as 'vi', 'emacs', 'notepad', 'notepad++', etc.  
@@ -61,12 +61,33 @@ The important files and directories to modify in the template are the following:
    3. Make all changes, preview them to make sure that everything is OK, and commit them to the 'gh-pages' (make sure that the "Commit directly to the gh-pages branch" option is checked).
 
 
+## Local Development with Jekyll
 
+As noted above, more complex changes to theme content such as configuring the sidebar navigation, working with images in the `/_docs/images/` folder, or larger edits to the text content are more easily made by installing the dependencies to run Jekyll (the Ruby programming language, primarily) and editing files in a text editor for preview.  This allows instantaneous rendering of the site exactly as it will appear in GitHub pages so you can more rapidly iterate changes.  You can then use a git client to make commits to your fork of this skeleton repo once you're happy with your changes, and push them to GitHub.
+
+Full instructions on setting up a local Jekyll development environment are available in the original Jekyll Documentation Theme [instructions](https://idratherbewriting.com/documentation-theme-jekyll/index.html).  Follwing are some useful Jekyll commands to run once the installation procedures are completed and your environment is configured.
+
+
+Run Jeyll via Bundler in incremental build, verbose logging mode (using the `_config_dev.yml` for local development settings):
+```
+bundle exec jekyll serve --config _config.yml,_config_dev.yml --watch --verbose --incremental
+```
+
+Clean the locally-built Jekyll site (necessary to render changes to sidebar and top menu components):
+```
+bundle exec jekyll clean
+```
+
+By default, the `bundle exec jekyll serve` command will serve the site on your machine at: 
+
+[http://localhost:4000/ioos-documentation-jekyll-skeleton/](http://localhost:4000/ioos-documentation-jekyll-skeleton/)
+
+You can modify the path to match your forked repository name by making edits to the `_config_dev.yml` file. 
 
 
 ## Configuring the Side Navigation Bar
 
-The sidebar navigation adapts to the documentation. Although the theme allows to use several sidebars (see `_config.yaml` file), a single sidebar 'ioos_sidebar' is used by default for IOOS' implementation. The sidebar name must be specified in a page's frontmatter. Here's an example of the page frontmatter showing the sidebar property:
+The sidebar navigation adapts to the documentation. Although the theme allows to use several sidebars (see `_config.yml` file), a single sidebar 'ioos_sidebar' is used by default for IOOS' implementation. The sidebar name must be specified either in the `_config.yml` in the 'defaults' section (as it is in this skeleton repo), or it may be configured on a page-by-page basis in the page's frontmatter. Here's an example of the page frontmatter showing the sidebar property:
 
 ```
 ---
@@ -75,7 +96,7 @@ tags: [formatting]
 keywords: notes, tips, cautions, warnings, admonitions
 last_updated: July 3, 2016
 summary: "You can insert notes, tips, warnings, and important alerts in your content. These notes are stored as shortcodes made available through the linksrefs.hmtl include."
-<span class="red">sidebar: ioos_sidebar</span>
+sidebar: ioos_sidebar
 permalink: mydoc_alerts
 ---
 ```
@@ -125,7 +146,7 @@ Follow the sample pattern shown in the theme, specifically looking at Markdown s
 
 This theme uses two GitHub 'submodules'.  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Pages [https://ioos.github.io](https://ioos.github.io) documentation sites.
 
-For example, the menu bar at the top of the page is configured within a submodule, as is the look and feel of the theme.  These details aren't critical for most general-purpose users of this skeleton repo, however, periodically you may need to update the submodules if the upstream content changes so your fork can be in alignment with the other IOOS documentation sites (or an IOOS admin may do this step for you).
+For example, the menu bar at the top of the page is configured within a submodule, as is the look and feel of the theme.  These details aren't critical for most general-purpose users of this skeleton repo, however, periodically you may need to update the submodules if the upstream content changes so your fork can be in alignment with the other IOOS documentation sites (or an IOOS admin may do this step for you if your documentation site is deployed alongside the other IOOS GitHub documentation pages).
 
 The git submodules for this skeleton repository are found in these subdirectories:
 

@@ -70,6 +70,10 @@ entries:
       url: /howto.html#getting-started
       output: web
 
+    - title: Local Development With Jekyll
+      url: /howto.html#local-development-with-jekyll
+      output: web
+
     - title: Configuring Side Navigation Bar 
       url: /howto.html#configuring-the-side-navigation-bar
       output: web
