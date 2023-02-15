@@ -145,7 +145,7 @@ Follow the sample pattern shown in the theme, specifically looking at Markdown s
 
 ## A Note on Submodules  
 
-This theme uses two GitHub 'submodules'.  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Documentation sites [https://ioos.github.io](https://ioos.github.io).
+This theme uses two [git submodules](https://git-scm.com/docs/gitsubmodules).  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Documentation sites <https://ioos.github.io>.
 
 For example, the menu bar at the top of the page is configured with a single YAML file in a submodule, and the tyeme code itself, including site functionality and look and feel is kept within a submodule.
 
@@ -171,7 +171,7 @@ Alternatively, you can pull in upstream changes to the `gh-pages` branch in GitH
 ```
 git pull
 ```
-There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHUb Documentation sites, and are kept syncrhonized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
+There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHub Documentation sites, and are kept synchronized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
 
 
 ## References  
