@@ -46,11 +46,12 @@ The important files and directories to modify in the template are the following:
 
 |**Name**|**Description**|
 |--------|------------|
-|**\_config.yml** | Main Jekyll configuration files.  Modify settings in these to change anything related to the theme.  The important settings to update are primarily located at the top of the file, and include settings like: 'title', 'name', 'description', 'baseurl', among others.  More documentation can be found in the 'Documentation Theme for Jekyll' original documentation (see below).|
-|**/\_data/sidebars/sidebar_ioos.yml**| Configuration file for a side accordion navigation menu.  Further description of the configuration details and how they work is beyond the scope here, refer to the Jekyll and the 'Documentation Theme for Jekyll' original documentation for more info.|
-|**/\_docs/**| Directory to place any GitHub-standard markdown (.md) content to publish.|
-|**/\_docs/index.md**| The markdown file that contains the content for the 'homepage' (index.html) for the site - this should be updated/replaced accordingly.|
-|**/\_docs/images/**| A folder to add any image content to reference in your documentation pages.|
+|`_config.yml` | Main Jekyll configuration files.  Modify settings in these to change anything related to the theme.  The important settings to update are primarily located at the top of the file, and include settings like: 'title', 'name', 'description', 'baseurl', among others.  More documentation can be found in the 'Documentation Theme for Jekyll' original documentation (see below).|
+|`_config_dev.yml` | Settings for running the site locally via Ruby/Jekyll in development mode.  You should only need to modify the `baseurl` setting for your documentation site to align with that of `_config.yml`.|
+|`/_data/sidebars/sidebar_ioos.yml`| Configuration file for a side accordion navigation menu.  Further description of the configuration details and how they work is beyond the scope here, refer to the Jekyll and the 'Documentation Theme for Jekyll' original documentation for more info.|
+|`/_docs/`| Directory to place any GitHub-standard markdown (.md) content to publish.|
+|`/_docs/index.md`| The markdown file that contains the content for the 'homepage' (index.html) for the site - this should be updated/replaced accordingly.|
+|`/_docs/images/`| A folder to add any image content to reference in your documentation pages.|
 
 **Notes:** 
 - All published documents in Markdown must be placed into the '_docs' directory, where they can be edited with any true text editor such as 'vi', 'emacs', 'notepad', 'notepad++', etc.  
@@ -144,22 +145,34 @@ Follow the sample pattern shown in the theme, specifically looking at Markdown s
 
 ## A Note on Submodules  
 
-This theme uses two GitHub 'submodules'.  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Pages [https://ioos.github.io](https://ioos.github.io) documentation sites.
+This theme uses two GitHub 'submodules'.  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Documentation sites [https://ioos.github.io](https://ioos.github.io).
 
-For example, the menu bar at the top of the page is configured within a submodule, as is the look and feel of the theme.  These details aren't critical for most general-purpose users of this skeleton repo, however, periodically you may need to update the submodules if the upstream content changes so your fork can be in alignment with the other IOOS documentation sites (or an IOOS admin may do this step for you if your documentation site is deployed alongside the other IOOS GitHub documentation pages).
+For example, the menu bar at the top of the page is configured with a single YAML file in a submodule, and the tyeme code itself, including site functionality and look and feel is kept within a submodule.
 
-The git submodules for this skeleton repository are found in these subdirectories:
+The git submodules for this skeleton repository are sourced from the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository and located in the following submodule paths (as configured in the `.gitmodules` file in the repository root):
 
-|**Submodule Path**|**Description**|
-|--------|------------|
-|**/_data/navbars_theme/**| the YAML configuration file for the IOOS top navigation bar (`topnav_ioos.yml`) and other files|
-|**/theme/**| the Jekyll theme files containing the look and feel and functionality of the site - sourced from the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repo|
+|**Submodule Path**|**Branch Name**|**Description**|
+|--------|------------|------------|
+|`/_data/navbars_theme/`| navbars | the YAML configuration file for the IOOS top navigation bar (`topnav_ioos.yml`) |
+|`/theme/`| main | the Jekyll theme files containing the look and feel and functionality of the site |
 
-If you have a git client installed, you can pull in upstream changes in these submodules by running the following:
+
+If you're doing local development with git and Jekyll and your local working copy is behind, you can pull in any upstream changes in these submodules by running the following:
 
 ```
- git submodule update --remote --merge
+git submodule update --init
+git submodule update --remote --merge
 ```
+You can confirm the submodules are configured correctly to track the upstream repository branches (and not tagged to a specific commit) by running:
+```
+git submodule status
+```
+Alternatively, you can pull in upstream changes to the `gh-pages` branch in GitHub directly via:
+```
+git pull
+```
+There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHUb Documentation sites, and are kept syncrhonized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
+
 
 ## References  
 
