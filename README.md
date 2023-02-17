@@ -32,7 +32,7 @@ bundle exec jekyll serve --config _config.yml --watch --verbose --incremental
 ```
 This will deploy a website at: http://127.0.0.1:4000/ioos-documentation-jekyll-skeleton/.
 
-Further local development instructions are in the [Local Development with Jekyll](https://ioos.github.io/ioos-documentation-jekyll-skeleton/howto.html#local-development-with-jekyll) section of the HOWTO.
+Further instructions for modifying and configuring your site can be found in the  [Editing and configuring your documentation site](https://ioos.github.io/ioos-documentation-jekyll-skeleton/howto.html#editing-and-configuring-your-documentation-site) section of the HOWTO.
 
 #### Editing site content
 
