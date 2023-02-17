@@ -13,36 +13,82 @@ summary: Instructions to create a new IOOS GitHub documentation site based on th
 
 The [ioos-documentation-jekll-skeleton](https://github.com/ioos/ioos-documentation-jekyll-skeleton) repository is a template, or 'skeleton' starting point to create a new GitHub-based documentation site that uses the IOOS [documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll).
 
-The instructions below will allow you to create a new GitHub Pages site that follows the look and feel/functionality of the Jekyll documentation theme used by the [https://ioos.github.io](https://ioos.github.io) documentation site, resulting in a blank slate site to which you can add your own content.
+The instructions below will allow you to create a new GitHub Pages site that follows the look and feel/functionality of the Jekyll documentation theme used by the [https://ioos.github.io](https://ioos.github.io) site.  You can then add/edit the template markdown documents with your own content.
 
 
 ## Getting Started
 
-### Step 1: Fork and download the ioos-documentation-jekyll-skeleton repository
+### Step 1: Use the ioos-documentation-jekyll-skeleton template to create your own forked repository
 
 This is done on the GitHub website.  These steps assume you already have a GitHub account in place.
 
-1. Browse to the [ioos-documentation-jekyll-skeleton](https://github.com/ioos/ioos-documentation-jekyll-skeleton) repository, and 'fork' the repository to your own user account: ![GitHub fork example image](https://ioos.github.io/fork.png){:style="width: 400px; display:block;"}
+1. Browse to the [ioos-documentation-jekyll-skeleton](https://github.com/ioos/ioos-documentation-jekyll-skeleton) repository, and select the 'Use this template' button and select 'Create your own repository': ![GitHub use template image](https://ioos.github.io/use-template.png){:style="display:block; border: 1px solid"}
 
-2. Rename your forked repository as desired via the GitHub website (by default, it will retain the same 'ioos-documentation-jekyll-skeleton' name as the repository it was forked from).  The repository name ideally should reflect the content to be published therein.  IOOS uses hyphens to separate names in documentation repositories (e.g. my-new-documentation-repo).  At the end of this step, you should have a new repository available at the following URL: https://github.com/\<github_username\>/\<my-new-documentation-repo\>.
+1. Name the repository, select the owner (your own account or a GitHub organization you have write permissions to) give it a description if desired, and select other options as appropriate.  At the end of this step, you should have a new repository available at the following URL: https://github.com/owner/my-new-documentation-repo. ![GitHub new repo image](https://ioos.github.io/new-repo.png){:style="width: 600px; display:block; border: 1px solid"}
 
-3. Download or 'clone' the repository to edit it on your local machine.  This step assumes you have a git client installed, which is beyond the scope of these instructions.  For those who do not have git, the editing steps can be accomplished on the GitHub website one file at a time (see Step 2 for details).  ![GitHub clone example image](https://ioos.github.io/clone.png){:style="width: 400px; display:block;"}
-
- 
-4. Continue to Step 2 to begin editing content in your new fork.
+1. From your new repoistory page, download or 'clone' the repository to edit it locally using Jekyll/Ruby.  The local editing process assumes you have a git client installed in order to push your edited files back to GitHub, and that you're able to install the dependencies to run Jekyll (Ruby programming language).  For those who do not have git, or cannot run Ruby, editing can be accomplished on the GitHub website one file at a time (see [Step 2: Edit your documentation site content](#step-2-edit-your-documentation-site-content) below for details).  ![GitHub clone example image](https://ioos.github.io/clone.png){:style="width: 350px; display:block; border: 1px solid"}
 
 
-### Step 2: Edit your documentation site content
+
+
+### Step 2: Setting up your site for editing
 
 Editing content in your new fork of the documentation skeleton repository can be done in one of two ways:
 1. Locally using a text editor, and optionally running in local development mode via a Ruby/Jekyll installation
 1. Online using the GitHub website
 
-Editing locally is easier for making major changes to the site, including more complicated steps like modifying the sidebar layout, working with images, etc.  It requires a working git client to transmit changes back to your GitHub fork for rendering online, as well as a local installation of Ruby/Jekyll to preview your changes.  Instructions for setting up the Ruby/Jekyll environment can be found in the original Jekyll Documentation Theme [instructions](https://idratherbewriting.com/documentation-theme-jekyll/index.html) - also see the [Local Development With Jekyll](#local-development-with-jekyll) section for more details.
+Editing locally with Ruby/Jekyll is easier for making major changes to the site, including more complex changes to theme content such as configuring the sidebar navigation, working with images in the `/_docs/images/` folder, etc.  It requires a basic text editor for editing theme content, a local installation of Ruby/Jekyll to preview your changes, and git client to push your changes back to GitHub.  See the [Editing locally with Ruby/Jekyll](#editing-locally-with-rubyjekyll) section for details.
 
-Editing in GitHub is easier for more minor content modifications (see the Notes section below).
+Editing in GitHub is easier for more minor content modifications such as editing text in individual markdowns file, one at a time.  See the [Editing online in GitHub](#editing-online-in-github) section for details.
 
-The important files and directories to modify in the template are the following:
+
+#### Editing locally with Ruby/Jekyll
+This approach allows instantaneous rendering of the site exactly as it will appear in GitHub Pages so you can more rapidly iterate changes.  Once you are happy with your changes, you can then commit them to your git branch locally, and push them with git to GitHub to update the online GitHub Pages site (or follow the GitHub PR workflow if you prefer).  Using git is outside the scope of this HOWTO, but lots of documentation and tutorial are available onine to learn git.
+
+**Setting up the Ruby/Jekyll environment:** 
+
+Instructions are avaialable in the Jekyll Documentation Theme [Getting Started documentation](https://idratherbewriting.com/documentation-theme-jekyll/index.html) - this is the upstream Jekyll theme that the IOOS documentation theme is based on.  
+
+Follow these steps first to get your Jekyll environment running, in particular, use the [Option 2: Build theme with github-pages gem](https://idratherbewriting.com/documentation-theme-jekyll/index.html#option2) approach to run the site, or read on to the section below.
+
+**Running the site in Jekyll:**
+
+Some modifications to the theme have been made for IOOS' purposes. Therefore, instead of using the exact `bundle` commands included in the Jekyll Documentation Theme instructions to run the site, use the following instead:
+
+Run Jekyll via Bundler in incremental build, verbose logging mode (using the `_config_dev.yml` for local development settings):
+```
+bundle exec jekyll serve --config _config.yml,_config_dev.yml --watch --verbose --incremental
+```
+
+If changing headers and menus, stop the running server by entering `ctrl-c` in the terminal. Then, clean up the locally-built site (in the `_site` directory) and re-run:
+```
+bundle exec jekyll clean
+bundle exec jekyll serve --config _config.yml,_config_dev.yml --watch --verbose --incremental
+```
+
+
+By default, the `bundle exec jekyll serve` command will serve the site on your machine at: 
+
+[http://localhost:4000/ioos-documentation-jekyll-skeleton/](http://localhost:4000/ioos-documentation-jekyll-skeleton/)
+
+Once you have the site running, you will want to modify the settings found in the `_config.yml`, `_config_dev.yml` files to change the site URL from 'ioos-documentation-jekyll-skeleton' to a URL of your choosing, and make other modifications as appropriate.  
+
+See the [Editing and configuring your documtenation site](#editing-and-configuring-your-documentation-site) section for futher explanation of these and other important theme files to familiarize yourself with and modify as appropriate.
+
+
+
+#### Editing online in GitHub
+When you are setting up a new documentation site initially, you will likely want to use the Ruby/Jekyll approach described above to get your site configured.  Once this has been accomplished and your site is running in GitHub Pages, you can make minor edits to your site  directly on GitHub with your browser in three simple steps:
+1. Go to the page you want to edit, and click on the "Edit me" button just below the page Title and Summary;
+1. Open it for editing by clicking on the "pencil" icon at the right side above the file content;
+1. Make all changes, preview them to make sure that everything is OK, and commit them to the 'gh-pages' (make sure that the "Commit directly to the gh-pages branch" option is checked).
+
+A visual walkthrough of this process is also available in the [Editing Markdown Files for GitHub Pages](https://docs.google.com/presentation/d/1OBZumh-vK3tynt90_2GH_Xdp1LVuI-wao70FVzGp3Vg/edit#slide=id.p) Google Slides presentation.
+
+
+## Editing and configuring your documentation site
+
+The table below lists important theme configuration files (which will require editing and customization for newly-created sites), and lists important directories in which to place content for your site.
 
 |**Name**|**Description**|
 |--------|------------|
@@ -53,40 +99,11 @@ The important files and directories to modify in the template are the following:
 |`/_docs/index.md`| The markdown file that contains the content for the 'homepage' (index.html) for the site - this should be updated/replaced accordingly.|
 |`/_docs/images/`| A folder to add any image content to reference in your documentation pages.|
 
-**Notes:** 
-- All published documents in Markdown must be placed into the '_docs' directory, where they can be edited with any true text editor such as 'vi', 'emacs', 'notepad', 'notepad++', etc.  
-
-- Alternatively,  if you just need to edit a document or two on the existing site, you may do that directly on GitHub with your browser in 3 simple steps:
-   1. Go to the page you want to edit, and click on the "Edit me" button just below the page Title and Summary;
-   2. Open it for editing by clicking on the "pencil" icon at the right side above the file content;
-   3. Make all changes, preview them to make sure that everything is OK, and commit them to the 'gh-pages' (make sure that the "Commit directly to the gh-pages branch" option is checked).
 
 
-## Local Development with Jekyll
-
-As noted above, more complex changes to theme content such as configuring the sidebar navigation, working with images in the `/_docs/images/` folder, or larger edits to the text content are more easily made by installing the dependencies to run Jekyll (the Ruby programming language, primarily) and editing files in a text editor for preview.  This allows instantaneous rendering of the site exactly as it will appear in GitHub pages so you can more rapidly iterate changes.  You can then use a git client to make commits to your fork of this skeleton repo once you're happy with your changes, and push them to GitHub.
-
-Full instructions on setting up a local Jekyll development environment are available in the original Jekyll Documentation Theme [instructions](https://idratherbewriting.com/documentation-theme-jekyll/index.html).  Follwing are some useful Jekyll commands to run once the installation procedures are completed and your environment is configured.
 
 
-Run Jeyll via Bundler in incremental build, verbose logging mode (using the `_config_dev.yml` for local development settings):
-```
-bundle exec jekyll serve --config _config.yml,_config_dev.yml --watch --verbose --incremental
-```
-
-Clean the locally-built Jekyll site (necessary to render changes to sidebar and top menu components):
-```
-bundle exec jekyll clean
-```
-
-By default, the `bundle exec jekyll serve` command will serve the site on your machine at: 
-
-[http://localhost:4000/ioos-documentation-jekyll-skeleton/](http://localhost:4000/ioos-documentation-jekyll-skeleton/)
-
-You can modify the path to match your forked repository name by making edits to the `_config_dev.yml` file. 
-
-
-## Configuring the Side Navigation Bar
+### Configuring the side navigation bar
 
 The sidebar navigation adapts to the documentation. Although the theme allows to use several sidebars (see `_config.yml` file), a single sidebar 'ioos_sidebar' is used by default for IOOS' implementation. The sidebar name must be specified either in the `_config.yml` in the 'defaults' section (as it is in this skeleton repo), or it may be configured on a page-by-page basis in the page's frontmatter. Here's an example of the page frontmatter showing the sidebar property:
 
@@ -109,7 +126,7 @@ For more details on the sidebar syntax, see [Sidebar navigation](http://idrather
 
 
 
-## Editing Markdown Documents
+### Editing markdown documents
 
 This theme uses a Kramdown variety of the Markdown - a lightweight markup language with plain text formatting syntax. The Kramdown is a superset of Markdown that supports standard Markdown and various extensions. The GitHub Pages naturally support rendering documents in Kramdown through the GitHub Jekyll implementation. The detailed description of the Kramdown syntax can be found by following the links in the Reference section below.
 
@@ -143,9 +160,10 @@ Value for `search` controls inclusion of the document content into theme search 
 Follow the sample pattern shown in the theme, specifically looking at Markdown sample documents in the `_docs` folder as an example.
 
 
-## A Note on Submodules  
 
-This theme uses two [git submodules](https://git-scm.com/docs/gitsubmodules).  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchrnonized more easily across all of IOOS' GitHub Documentation sites <https://ioos.github.io>.
+### A note on submodules  
+
+This theme uses two GitHub 'submodules'.  Submodules are essentially links to other GitHub repositories that allow certain components of the site to be synchronized more easily across all of IOOS' GitHub Documentation sites [https://ioos.github.io](https://ioos.github.io).
 
 For example, the menu bar at the top of the page is configured with a single YAML file in a submodule, and the tyeme code itself, including site functionality and look and feel is kept within a submodule.
 
@@ -171,7 +189,8 @@ Alternatively, you can pull in upstream changes to the `gh-pages` branch in GitH
 ```
 git pull
 ```
-There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHub Documentation sites, and are kept synchronized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
+There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHub Documentation sites, and are kept syncrhonized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
+
 
 
 ## References  
