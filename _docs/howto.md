@@ -171,25 +171,65 @@ The git submodules for this skeleton repository are sourced from the [ioos/docum
 
 |**Submodule Path**|**Branch Name**|**Description**|
 |--------|------------|------------|
-|`/_data/navbars_theme/`| navbars | the YAML configuration file for the IOOS top navigation bar (`topnav_ioos.yml`) |
+|`/_data/navbars/`| navbars | the YAML configuration file for the IOOS top navigation bar (`topnav_ioos.yml`) |
 |`/theme/`| main | the Jekyll theme files containing the look and feel and functionality of the site |
 
+#### Updating submodules in a local development clone
 
-If you're doing local development with git and Jekyll and your local working copy is behind, you can pull in any upstream changes in these submodules by running the following:
+If you're doing local development with git and Jekyll and your local working copy is out of date (some number of commits behind the GitHub-hosted source repository), the workflow to follow to update your local working copy is slightly more complicated due to the presence of the submodules.  
 
+First, follow a typical git process to pull in the remote changes from GitHub.  Assuming `origin` is the git remote repo alias and `gh-pages` is the working branch, run either of the following commands to update your working copy:
+```
+git pull
+```
+or
+```
+git fetch origin
+git merge origin/gh-pages
+```
+
+At this point, running a `git status` command may indicate that your working copy contains commits on the submodules that differ from the remote repo you're working with, This looks something like the following:
+```
+git status
+On branch gh-pages
+Your branch is up-to-date with 'origin/gh-pages'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   _data/navbars (new commits)
+        modified:   theme (new commits)
+```
+
+This means you must also update the submodules to match the commit recorded in the latest commit of the superproject (i.e. the documentation repo itself).  
+
+Pull in any upstream changes to submodules by running either of the following (`--init` may be needed in some circumstances):  
 ```
 git submodule update --init
-git submodule update --remote --merge
+git submodule update
 ```
+
 You can confirm the submodules are configured correctly to track the upstream repository branches (and not tagged to a specific commit) by running:
 ```
 git submodule status
 ```
-Alternatively, you can pull in upstream changes to the `gh-pages` branch in GitHub directly via:
+
+Which should output something like the following (showing the hash of the commit currently checked out, the submodule name, and the remote branch tracked):
 ```
-git pull
+edb2048843b71191909d53428b969f53bfbe4757 _data/navbars (remotes/origin/navbars)
+d958aec9981aacace8c08dc6b2da147afdab9af6 theme (remotes/origin/main)
 ```
-There shouldn't be any need to modify either of the submodules or files therein manually, they are meant to be identical across all of the individual IOOS GitHub Documentation sites, and are kept syncrhonized with changes in the [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Action job configured in the `.github/workflows/sync_theme.yml` file. 
+
+Additionally, running `git status` again should resolve the modified status of both submodule paths (meaning your working copy is now fully in-sync with the latest remote commit on GitHub) and you can now commit new changes without affecting the submodule commit history:
+```
+git status
+On branch gh-pages
+Your branch is up-to-date with 'origin/gh-pages'.
+nothing to commit, working directory clean
+```
+Working with submodules can be tricky, however the steps above should work in most cases.  For full documentation on the `git submodule` command, see: [https://git-scm.com/docs/git-submodule](https://git-scm.com/docs/git-submodule).  
+
+There shouldn't be any need to modify code in either of the submodules manually, they are meant to be identical across all of the individual IOOS GitHub Documentation sites, they need only be properly updated in local working copies before submitting any changes back to GitHub.  Both submodules are also automatically syncrhonized in GitHub with changes in the source [ioos/documentation-theme-jekyll](https://github.com/ioos/documentation-theme-jekyll) repository via GitHub Actions as configured in the `.github/workflows/sync_theme.yml` file.  For the ioos/ioos-documentation-jekyll-skeleton repository, that file can be found [here](https://github.com/ioos/ioos-documentation-jekyll-skeleton/blob/gh-pages/.github/workflows/sync_theme.yml).
 
 
 
