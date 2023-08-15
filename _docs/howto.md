@@ -246,3 +246,10 @@ There shouldn't be any need to modify code in either of the submodules manually,
  - GitHub Kramdown:
     - [Kramdown Syntax](https://kramdown.gettalong.org/syntax.html)
     - [Kramdown Quick Reference](https://kramdown.gettalong.org/quickref.html)
+
+## FAQ
+
+### The theme isn't rendering properly when deployed to the web.
+If it looks something like:
+![screenshot](https://user-images.githubusercontent.com/8480023/260767152-435696ce-fd9e-4b76-86e5-dc84be85e577.png)
+   * Check that `_config.yml` and `_config_dev.yml` are pointing to the right repository (see this PR as an example https://github.com/ioos/glider-dac/pull/216/files).
