@@ -81,7 +81,10 @@ See the [Editing and configuring your documtenation site](#editing-and-configuri
 When you are setting up a new documentation site initially, you will likely want to use the Ruby/Jekyll approach described above to get your site configured.  Once this has been accomplished and your site is running in GitHub Pages, you can make minor edits to your site  directly on GitHub with your browser in three simple steps:
 1. Go to the page you want to edit, and click on the "Edit me" button just below the page Title and Summary;
 1. Open it for editing by clicking on the "pencil" icon at the right side above the file content;
-1. Make all changes, preview them to make sure that everything is OK, and commit them to the 'gh-pages' (make sure that the "Commit directly to the gh-pages branch" option is checked).
+1. Make all changes, preview them to make sure that everything is OK.
+1. As best practice, it's typically good to select "Create a new branch for this commit and start a pull request". No need to worry about what you call the branch. Then, click "Propose changes". This gives folks who are monitoring the repo an opportunity to review the changes and provide comments. Typically it's catching typos/markup issues.
+   1. Another option is to "Commit directly to the gh-pages branch". This simply merges your changes directly into the file without review.
+
 
 A visual walkthrough of this process is also available in the [Editing Markdown Files for GitHub Pages](https://docs.google.com/presentation/d/1OBZumh-vK3tynt90_2GH_Xdp1LVuI-wao70FVzGp3Vg/edit#slide=id.p) Google Slides presentation.
 
