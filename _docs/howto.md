@@ -168,9 +168,11 @@ Follow the sample pattern shown in the theme, specifically looking at Markdown s
 Our pages now have the capability to render [Mermaid diagrams](https://mermaid.js.org/). To include a Mermaid diagram on a documentation page:
 
 1. add `mermaid: true` to the front matter of the page you want the diagram on
-2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows:
-```
+2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows (remove backslashes as those are only needed for rendering the code here):
+
 {% raw %}
+```
+{\% raw %}
 <div class="mermaid">
 %%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
@@ -180,8 +182,9 @@ flowchart LR
     Line 3`"]
     markdown --> newLines
 </div>
-{% endraw %}
+{\% endraw %}
 ```
+{% endraw %}
 
 Here is the above code rendered as a flowchart:
 
