@@ -6,6 +6,7 @@ toc: false
 search: exclude
 #permalink: index.html
 summary: Instructions to create a new IOOS GitHub documentation site based on the 'ioos-documentation-jekll-skeleton' repository.
+mermaid: true
 ---
 
 
@@ -162,7 +163,43 @@ Value for `search` controls inclusion of the document content into theme search 
 
 Follow the sample pattern shown in the theme, specifically looking at Markdown sample documents in the `_docs` folder as an example.
 
+#### Adding Mermaid diagrams to a page
 
+Our pages now have the capability to render [Mermaid diagrams](https://mermaid.js.org/). To include a Mermaid diagram on a documentation page:
+
+1. add `mermaid: true` to the front matter of the page you want the diagram on
+2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows:
+```
+{% raw %}
+<div class="mermaid">
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart LR
+    markdown["`This **is** _Markdown_`"]
+    newLines["`Line1
+    Line 2
+    Line 3`"]
+    markdown --> newLines
+</div>
+{% endraw %}
+```
+
+Here is the above code rendered as a flowchart:
+
+{% raw %}
+<div class="mermaid">
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+flowchart LR
+    markdown["`This **is** _Markdown_`"]
+    newLines["`Line1
+    Line 2
+    Line 3`"]
+    markdown --> newLines
+</div>
+{% endraw %}
+
+Looking for an example of a Mermaid diagram in the IOOS Documentation theme? See [this example](https://github.com/ioos/mbon-docs/blob/gh-pages/_docs/mbon-data-flow.md). 
+
+For more information about Mermaid diagrams, including a live editor, checkout the [documentation page](https://mermaid.js.org/intro/).
 
 ### A note on submodules  
 
