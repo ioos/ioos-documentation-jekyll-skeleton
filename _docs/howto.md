@@ -168,7 +168,7 @@ Follow the sample pattern shown in the theme, specifically looking at Markdown s
 Our pages now have the capability to render [Mermaid diagrams](https://mermaid.js.org/). To include a Mermaid diagram on a documentation page:
 
 1. add `mermaid: true` to the front matter of the page you want the diagram on
-2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows (remove backslashes as those are only needed for rendering the code here):
+2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows:
 
 <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ "{% raw " }}%}
 &lt;div class="mermaid"&gt;
