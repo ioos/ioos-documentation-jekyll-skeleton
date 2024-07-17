@@ -170,8 +170,8 @@ Our pages now have the capability to render [Mermaid diagrams](https://mermaid.j
 1. add `mermaid: true` to the front matter of the page you want the diagram on
 2. insert the diagram following the [Mermaid syntax](https://mermaid.js.org/syntax/flowchart.html) as follows:
 
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ "{% raw " }}%}
-&lt;div class="mermaid"&gt;
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```mermaid
 %%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
     markdown["`This **is** _Markdown_`"]
@@ -179,14 +179,13 @@ flowchart LR
     Line 2
     Line 3`"]
     markdown --&gt; newLines
-&lt;/div&gt;
-{{ "{% endraw " }}%}
+```
 </code></pre></div></div>
 
 Here is the above code rendered as a flowchart:
 
-{% raw %}
-<div class="mermaid">
+
+``` mermaid
 %%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
     markdown["`This **is** _Markdown_`"]
@@ -194,8 +193,7 @@ flowchart LR
     Line 2
     Line 3`"]
     markdown --> newLines
-</div>
-{% endraw %}
+```
 
 Looking for an example of a Mermaid diagram in the IOOS Documentation theme? See [this example](https://github.com/ioos/mbon-docs/blob/gh-pages/_docs/mbon-data-flow.md). 
 
