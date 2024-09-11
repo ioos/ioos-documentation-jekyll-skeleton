@@ -195,6 +195,8 @@ flowchart LR
     markdown --> newLines
 ```
 
+**Note:** A [hexagon node](https://mermaid.js.org/syntax/flowchart.html#a-hexagon-node) (`{{}}`) will break the mermaid diagram syntax when jekyll renders it into an html webpage. For more details on this gotcha, see [this discussion](https://github.com/ioos/mbon-docs/issues/58#issuecomment-2343676525).
+
 Looking for an example of a Mermaid diagram in the IOOS Documentation theme? See [this example](https://github.com/ioos/mbon-docs/blob/gh-pages/_docs/mbon-data-flow.md). 
 
 For more information about Mermaid diagrams, including a live editor, checkout the [documentation page](https://mermaid.js.org/intro/).
